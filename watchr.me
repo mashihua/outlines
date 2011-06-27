@@ -1,0 +1,97 @@
+#!/usr/bin/env watchr
+
+require 'rubygems'
+require 'growl'
+
+# If your spec runner is at a different location: customize it here..
+RUNNER = "node test/spec.js"
+
+
+system 'clear'
+
+# ---------
+# Signals
+# ---------
+
+Signal.trap('QUIT') { run_all_specs(File.join(Dir.pwd, 'test', 'spec')) } # Ctrl-\
+Signal.trap('INT' ) { abort("\nBye.\n") }   # Ctrl-C
+
+# ---------
+# Rules
+# ---------           
+
+watch( '^test/spec/(.*)_spec\.(js|coffee)' ) do |md|
+  run "Runnning: #{md[0]}" do
+    `#{RUNNER} #{md[0]}`
+  end
+end
+
+watch( '^js/(.*)\.(js|coffee)' ) do |md|
+  spec = File.join('test','spec', File.dirname(md[0]), "#{File.basename(md[0], '.coffee')}_spec.(js|coffee)")
+  if File.exist?(spec)
+    run "Running: #{spec}" do
+      `#{RUNNER} #{spec}`
+    end
+  end
+end
+
+
+# ---------
+# Helpers
+# ---------
+
+def run_all_specs(target)
+  run "Running all in: #{target}" do
+    `#{RUNNER} #{target}`
+  end
+end
+
+
+def run(description, &block)
+  puts "#{description}" 
+  
+  result = parse_result(block.call)
+  
+  if result[:tests] =~ /\d/
+    if $?.success? && result[:success]
+      title = "Jasmine Specs Passed!"
+      img = "./test/images/pass.png"
+    else
+      title = "Jasmine Specs Failed!"
+      img = "./test/images/fail.png"
+    end
+    
+    specs_count   = pluralize(result[:assertions], "test", "tests")
+    failed_count  = pluralize(result[:failures], "failure", "failures")
+    
+    growl(title, "#{specs_count}, #{failed_count}", img)
+  else
+    growl("Running Specs Failed!", "Runner returned an error..")
+  end
+end
+
+def pluralize(count, singular, plural)
+  count == "1" ? "#{count} #{singular}" : "#{count} #{plural}"
+end
+
+def growl(title, message, image_path = nil)
+  image_path = File.expand_path(image_path) if image_path 
+  g = Growl.new
+  g.message = message
+  g.title = title
+  g.image = image_path if image_path && File.exist?(image_path)
+  g.run if Growl.installed?
+end
+
+def parse_result(result)
+  puts result
+  duration = result.scan(/Finished in (\d.\d+) seconds/).flatten.first
+  tests, assertions, failures = result.scan(/(\d+) tests?, (\d+) assertions?, (\d+) failures?/).flatten
+  { 
+    :tests => tests, 
+    :assertions => assertions, 
+    :failures => failures, 
+    :success => failures == "0", 
+    :duration => duration 
+  }
+end

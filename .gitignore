@@ -1,0 +1,6 @@
+.DS_Store
+.settings.xml
+.project
+.settings
+.settings.xml.old
+test/node_modules

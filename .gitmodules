@@ -1,0 +1,9 @@
+[submodule "test/node_modules/jasmine-node"]
+  path = test/node_modules/jasmine-node
+  url = https://github.com/mhevery/jasmine-node.git
+[submodule "test/node_modules/jasmine-node"]
+  path = test/node_modules/jasmine-node
+  url = https://github.com/aredridel/html5.git
+[submodule "test/node_modules/request"]
+  path = test/node_modules/request
+  url = https://github.com/mikeal/request.git
