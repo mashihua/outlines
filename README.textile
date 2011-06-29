@@ -6,7 +6,7 @@ h2.Instructions
 
 h3.For use in browser:
 <p>just load the script onto a server of your choice and add a bookmarklet with the following code:</p>
-<pre>javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')[0];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
+<pre>javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')&#91;0&#93;;head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
 </pre>
 
 h3.For use in Node.js:
