@@ -17,7 +17,7 @@ Section.prototype.append = function(what){
 }
 
 Section.prototype.toHTML = function(anchor){
-    var value =  headingText(this.heading);
+    var value =  headingText(this.heading, this.node);
       if (anchor) {
           value = '<a href="#'+getId(this.node)+'">'+ value + '</a>';
       }
@@ -27,14 +27,24 @@ Section.prototype.toHTML = function(anchor){
 }
 
 //get head text
-function headingText(heading){
-    if (isHeading(heading)) {
-        if (getTagName(heading) == 'hgroup') {
-            heading = heading.getElementsByTagName('h'+(-getHeadingRank(heading)))[0];
-        }
-        return heading.textContent || heading.innerText || "<i>Untitled "+heading.nodeName+"</i>";
+function headingText(heading, node){
+    //must be root
+    if(heading instanceof Section){
+        heading = heading.node;
     }
-    return ""+haeding;
+    if(heading){
+        if (isHeading(heading)) {
+            if (getTagName(heading) == 'hgroup') {
+                heading = heading.getElementsByTagName('h'+(-getHeadingRank(heading)))[0];
+            }
+            return heading.textContent || heading.innerText || "Untitled Heading " + heading.nodeName ;
+        }
+        return "Untitled Section " + heading.nodeName;
+    }else{
+       return "Untitled Section " + node.nodeName; 
+    }
+    
+    
 }
 
 //help method,section to html
@@ -132,6 +142,8 @@ function enter(ele){
     //When entering a sectioning content element or a sectioning root element
     if (isSectioningContent(ele) || isSectioningRoot(ele)) {
         //If current outlinee is not null, and the current section has no heading, 
+        //move to exitNode when implied heading
+
         if (current_outline !== null && !current_section.heading) {
     
             //create an implied heading,let that be the heading for the current section.

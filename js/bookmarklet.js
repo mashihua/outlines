@@ -17,7 +17,7 @@
         close.className= 'close';
         close.innerHTML = 'X';
         close.href='#';
-    	close.onclick=function(){ document.body.removeChild(div); close = lnk = null; };
+    	close.onclick=function(){ document.body.removeChild(div); close = html = div = null; };
         document.body.appendChild(div);
     }
     if (!window.ActiveXObject) {

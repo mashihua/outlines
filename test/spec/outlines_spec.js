@@ -47,12 +47,16 @@ describe("hgroup test", function() {
         expect(2).toEqual(outlines.sections.length);
     });
     
-    it('the section 1 should return h1 ',function(){
+    it('the section 1 should return body',function(){
+        expect('body').toEqual(outlines.sections[0].node.tagName.toLowerCase());
+    });
+    
+    it('the section 1 heading should return h1',function(){
         expect('h1').toEqual(outlines.sections[0].heading.tagName.toLowerCase());
     });
     
-    it('the section 1 of section 1 should return hgroup ',function(){
-        expect('hgroup').toEqual(outlines.sections[0].sections[0].heading.tagName.toLowerCase());
+    it('the section 1 of section 1 should return hgroup',function(){
+        expect('hgroup').toEqual(outlines.sections[0].sections[0].node.tagName.toLowerCase());
     });
     
     it('the outline shoud equal',function(){
@@ -73,12 +77,16 @@ describe("implied section test", function() {
         expect(1).toEqual(outlines.sections.length);
     });
     
-    it('the section 1 should return h1 ',function(){
+    it('the section 1 should return body',function(){
+        expect('body').toEqual(outlines.sections[0].node.tagName.toLowerCase());
+    });
+    
+    it('the section 1 heading should return h1 ',function(){
         expect('h1').toEqual(outlines.sections[0].heading.tagName.toLowerCase());
     });
     
     it('the section 1 of section 1 should return h2 ',function(){
-        expect('h2').toEqual(outlines.sections[0].sections[0].heading.tagName.toLowerCase());
+        expect('h2').toEqual(outlines.sections[0].sections[0].node.tagName.toLowerCase());
     });
     
     it('the outline shoud equal',function(){
@@ -97,7 +105,7 @@ describe("one more implied section test", function() {
         expect(1).toEqual(outlines.sections.length);
     });
     
-    it('the section 1 should return h4',function(){
+    it('the section 1  heading should return h4',function(){
         expect('h4').toEqual(outlines.sections[0].heading.tagName.toLowerCase());
     });
     
@@ -140,6 +148,34 @@ describe("one more implied section test", function() {
     it('the outline shoud equal',function(){
         expect('<ol><li>Apples<ol><li>Taste<ol><li>Sweet</li></ol></li><li>Color</li></ol></li></ol>').toEqual(outlines.toHTML());
     });
+});
+
+describe("Untitled test", function() {
+    var window = jsdom.jsdom(null, null, {parser: HTML5}).createWindow(),
+        parser = new HTML5.Parser({document: window.document}),
+        outlines;
+    parser.parse('<body><nav><p><a href="/">Home</a></p></nav><p>Hello world.</p><aside><p>My cat is cute.</p></aside></body>');
+    outlines = HTMLOutline(window.document.body);
+    
+    it('should contant 1 section',function(){
+        expect(1).toEqual(outlines.sections.length);
+    });
+    
+    it('the section 1 should return body',function(){
+        expect('body').toEqual(outlines.sections[0].node.tagName.toLowerCase());
+    });
+    it('the section 1 of section 1 should return nav',function(){
+        expect('nav').toEqual(outlines.sections[0].sections[0].node.tagName.toLowerCase());
+    });
+    
+    it('the section 2 of section 1 should have return aside',function(){
+        expect('aside').toEqual(outlines.sections[0].sections[1].node.tagName.toLowerCase());
+    });
+    
+    it('the outline shoud equal',function(){
+        expect('<ol><li>Untitled Section BODY<ol><li>Untitled Section NAV</li><li>Untitled Section ASIDE</li></ol></li></ol>').toEqual(outlines.toHTML());
+    });
+
 });
 
 /*
