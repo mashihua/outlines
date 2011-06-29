@@ -5,13 +5,11 @@ This is a tool implement the creating an html5 outlines algorithm
 Instructions
 
 For use in browser, just load the script onto a server of your choice and add a bookmarklet with the following code:
-<pre>
-javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')\[0\];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
+<pre>javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')[0];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
 </pre>
 
 For use in Node.js:
-<pre>
-git clone https://mashihua@github.com/mashihua/outlines.git
+<pre>git clone https://mashihua@github.com/mashihua/outlines.git
 var HTML5 = require(‘html5’),
     jsdom = require(‘jsdom’);
     window = jsdom.jsdom(null, null, {parser: HTML5}).createWindow(),
@@ -21,8 +19,7 @@ parser.parse('<body>Foo</body>');
 </pre>
 
 For testing:
-<pre>
-git clone https://mashihua@github.com/mashihua/outlines.git
+<pre>git clone https://mashihua@github.com/mashihua/outlines.git
 cd outlines
 git submodule update --init --recursive
 node test/spec.js test/spec/outlines_spec.js
