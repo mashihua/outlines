@@ -1,24 +1,27 @@
-# HTML5 Outlines 
+h1.HTML5 Outlines 
 
 This is a tool implement the creating an html5 outlines algorithm 
 
-Instructions
+h2.Instructions
 
-For use in browser, just load the script onto a server of your choice and add a bookmarklet with the following code:
+h3.For use in browser:
+<p>just load the script onto a server of your choice and add a bookmarklet with the following code:</p>
 <pre>javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')[0];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
 </pre>
 
-For use in Node.js:
+h3.For use in Node.js:
 <pre>git clone https://mashihua@github.com/mashihua/outlines.git
+npm link
+
 var HTML5 = require(‘html5’),
     jsdom = require(‘jsdom’);
     window = jsdom.jsdom(null, null, {parser: HTML5}).createWindow(),
     parser = new HTML5.Parser({document: window.document}),
     outlines;
-parser.parse('<body>Foo</body>');
+parser.parse('&lt;body&gt;Foo&lt;/body&gt;');
 </pre>
 
-For testing:
+h3.For testing:
 <pre>git clone https://mashihua@github.com/mashihua/outlines.git
 cd outlines
 git submodule update --init --recursive
