@@ -4,9 +4,10 @@ This is a tool implement the creating an html5 outlines algorithm
 
 <h2>Instructions</h2>
 <h3>For use in browser</h3>
-<p>Just <a href="javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')&#91;0&#93;;head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());">drag this link to bookmarks</a>.</p>
+<p>Just <a href="javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')&#91;0&#93;;head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());">drag this link to bookmarks</a>.or add follow code:</p>
+<pre>
+javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')&#91;0&#93;;head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
 </pre>
-
 <h3>For use in Node.js</h3>
 <pre>git clone https://mashihua@github.com/mashihua/outlines.git
 npm link
