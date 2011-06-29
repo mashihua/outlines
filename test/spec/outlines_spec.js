@@ -141,6 +141,7 @@ describe("one more implied section test", function() {
         expect('<ol><li>Apples<ol><li>Taste<ol><li>Sweet</li></ol></li><li>Color</li></ol></li></ol>').toEqual(outlines.toHTML());
     });
 });
+
 /*
 <section>   
   <h1>Forest elephants</h1>    

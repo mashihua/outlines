@@ -27,7 +27,7 @@ watch( '^test/spec/(.*)_spec\.(js|coffee)' ) do |md|
 end
 
 watch( '^js/(.*)\.(js|coffee)' ) do |md|
-  spec = File.join('test','spec', File.dirname(md[0]), "#{File.basename(md[0], '.coffee')}_spec.(js|coffee)")
+  spec = File.join('test','spec', "#{File.basename(md[0], '.js')}_spec.js")
   if File.exist?(spec)
     run "Running: #{spec}" do
       `#{RUNNER} #{spec}`

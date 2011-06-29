@@ -1,5 +1,6 @@
 
-(function(){
+(function(env){
+
 /*
 Section class
 */
@@ -25,6 +26,7 @@ Section.prototype.toHTML = function(anchor){
     return (value=='' ? value : '<ol>'+value+'</ol>');
 }
 
+//get head text
 function headingText(heading){
     if (isHeading(heading)) {
         if (getTagName(heading) == 'hgroup') {
@@ -35,6 +37,7 @@ function headingText(heading){
     return ""+haeding;
 }
 
+//help method,section to html
 function sectionToHTML(sections, anchor){
     var value = '';
     for (var i=0; i < sections.length; i++) {
@@ -43,7 +46,7 @@ function sectionToHTML(sections, anchor){
     return (value=='' ? value : '<ol>'+value+'</ol>');
 }
 
-
+//
 function getId(ele){
     var id = ele.getAttribute('id');
     if (id){
@@ -53,6 +56,7 @@ function getId(ele){
     ele.setAttribute('id', id);
     return id;
 }
+
 /*
 get function to check element is in a categories
 */
@@ -95,7 +99,6 @@ get last section from sections
 function getLastSection(sections){
     return sections[sections.length - 1];
 }
-
 
 /*
 get rank form section
@@ -228,7 +231,6 @@ function enter(ele){
     //Otherwise,do nothing. 
 }
 
-
 /*
 exiting an element
 */
@@ -294,7 +296,6 @@ function exit(ele){
     // If the current outlinee is null, do nothing
 }
 
-
 /*
 Treenode Walker
 */
@@ -324,13 +325,15 @@ function treeNodeWalker(root, enter, exit) {
 
 
 function HTMLOutline(root){
+    //reset
     current_outline = null,current_section = null,stack = [];
     treeNodeWalker(root,enter,exit);
     return current_outline ? current_outline.outline : null;;
 }
 
-if(this.exports != undefined)
+if(env.exports !== undefined)
     exports.HTMLOutline = HTMLOutline;
 else
-    this.HTMLOutline = HTMLOutline;
-}());
+    env.HTMLOutline = HTMLOutline;
+    
+}(this));
