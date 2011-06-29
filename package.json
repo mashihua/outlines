@@ -1,0 +1,24 @@
+{ 
+	"name" : "outlines", 
+	"description" : "A html outlines for node", 
+	"keywords" : [ "html", "html5", "outlines"], 
+	"version" : "0.3", 
+	"homepage" : "http://github.com/mashihua/outlines/wiki/", 
+	"author" : "mashihua <mashihua@gmail.com> (http://f2eskills.com)", 
+	"repository" :{ "type" : "git", 
+		"url" : "git://github.com/mashihua/outlines.git"
+	 }, 
+	"bugs" :{
+		"web" : "http://github.com/mashihua/outlines/issues"
+	},
+	"dependencies" :{ "html5" : "1", 
+		"jasmine-node" : "1", 
+		"request" : "1"
+	}, 
+	"engines" : { "node" : "0.4 || 0.5", "npm" : "1" },
+	"licenses" :[ 
+		{ "type" : "MIT", 
+		"url" : "http://github.com/mashihua/outlines/raw/master/LICENSE"
+		}
+	]
+}
