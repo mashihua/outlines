@@ -1,13 +1,15 @@
 <h1>HTML5 Outlines</h1>
 
-This is a tool implement the creating an html5 outlines algorithm 
+HTML5 introduces a new "outline algorithm":http://dev.w3.org/html5/spec/sections.html. Some elements (header, footer, section, article, nav and aside) are used to divide a document into sections. Titles of sections are set with &lt;H1&gt; header elements nested inside sectioning elements. Working with HTML5 documents it’s sometimes important to check how a browser translates the markup to a document outline. You can use this tool to tell you whether your html is the well-titled structure or not. 
 
 <h2>Instructions</h2>
 <h3>For use in browser</h3>
-<p>Just <a href="javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')&#91;0&#93;;head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());">drag this link to bookmarks</a>.or add follow code:</p>
-<pre>
-javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')&#91;0&#93;;head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
-</pre>
+Just load the script onto a server of your choice and add a bookmarklet with the following code:
+
+<code>
+javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')[0];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
+</code>
+
 <h3>For use in Node.js</h3>
 <pre>git clone https://mashihua@github.com/mashihua/outlines.git
 npm link
