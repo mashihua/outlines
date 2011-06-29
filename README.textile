@@ -1,33 +1,23 @@
-h1. HTML5 Outlines 
+# HTML5 Outlines 
 
 This is a tool implement the creating an html5 outlines algorithm 
 
-h2.Instructions:
+Instructions
 
-h3.For use in browser:
-
-p.Just drop this link to your bookmarks:
-"bookmarklet":javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')\[0\];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
-
-
-h3.For use in Node.js:
+For use in browser, just load the script onto a server of your choice and add a bookmarklet with the following code:
 <pre>
-git clone https://mashihua@github.com/mashihua/outlines.git
-example:
-var HTML5 = require('html5'),
-    jsdom = require('jsdom');
-    window = jsdom.jsdom(null, null, {parser: HTML5}).createWindow(),
-    parser = new HTML5.Parser({document: window.document}),
-    outlines;
-parser.parse("<body><h1>Foo</h1></body>");
-outlines = HTMLOutline(window.document.body);
+javascript:(function(){var s = document.createElement('script'),head = document.getElementsByTagName('head')\[0\];head.appendChild(s);s.src='https://raw.github.com/mashihua/outlines/master/js/bookmarklet.js';}());
 </pre>
 
-h3.For testing:
+For use in Node.js:
+<pre>
+git clone https://mashihua@github.com/mashihua/outlines.git
+</pre>
+
+For testing:
 <pre>
 git clone https://mashihua@github.com/mashihua/outlines.git
 cd outlines
 git submodule update --init --recursive
 node test/spec.js test/spec/outlines_spec.js
 </pre>
-
