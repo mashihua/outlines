@@ -12,6 +12,12 @@ javascript:(function(){var s = document.createElement('script'),head = document.
 For use in Node.js:
 <pre>
 git clone https://mashihua@github.com/mashihua/outlines.git
+var HTML5 = require(‘html5’),
+    jsdom = require(‘jsdom’);
+    window = jsdom.jsdom(null, null, {parser: HTML5}).createWindow(),
+    parser = new HTML5.Parser({document: window.document}),
+    outlines;
+parser.parse('<body>Foo</body>');
 </pre>
 
 For testing:
