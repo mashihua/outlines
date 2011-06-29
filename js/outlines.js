@@ -32,7 +32,7 @@ function headingText(heading){
         if (getTagName(heading) == 'hgroup') {
             heading = heading.getElementsByTagName('h'+(-getHeadingRank(heading)))[0];
         }
-        return heading.textContent || heading.innerText || "<i>No text inside "+heading.nodeName+"</i>";
+        return heading.textContent || heading.innerText || "<i>Untitled "+heading.nodeName+"</i>";
     }
     return ""+haeding;
 }
