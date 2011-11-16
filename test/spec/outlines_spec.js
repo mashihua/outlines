@@ -177,23 +177,3 @@ describe("Untitled test", function() {
     });
 
 });
-
-/*
-<section>   
-  <h1>Forest elephants</h1>    
-  <section>     
-    <h2>Introduction</h2>     
-    <p>In this section, we discuss the lesser known forest elephants
-  </section>   
-  <section>     
-    <h2>Habitat</h2>
-    <P>Forest elephants do not live in trees but among them. 
-  </section>
-   <aside>
-    <p>advertising block
-  </aside>
-</section>
-<footer>
-  <p>(c) 2010 The Example company
-</footer>
-*/
